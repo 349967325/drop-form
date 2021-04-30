@@ -1,0 +1,29 @@
+
+.pageContainer {
+  display: flex;
+}
+
+.sideLeftWrap {
+  width: 240px;
+}
+
+.previewWrap {
+  flex: 1;
+}
+
+.sideRightWrap {
+  width: 320px;
+}
+
+.pageFooter {
+  position: fixed;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  height: 56px;
+  line-height: 56px;
+  text-align: center;
+  border-top: 1px solid #f0f0f0;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(119, 107, 107, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
