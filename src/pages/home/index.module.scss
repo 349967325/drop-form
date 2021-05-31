@@ -37,3 +37,26 @@
     margin-left: 0px;
   }
 }
+
+.container {
+  margin: 0px auto;
+  width: 1200px;
+}
+
+.kanban {
+  display: flex;
+}
+
+.cardwrap {
+  margin-bottom: 12px;
+}
+
+.single {
+  margin-left: 24px;
+  width: 300px;
+  flex-shrink: 0;
+
+  &:first-child {
+    margin-left: 0px;
+  }
+}

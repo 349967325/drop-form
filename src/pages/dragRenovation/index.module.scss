@@ -1,6 +1,13 @@
 
+.dragPage {
+  position: relative;
+  height: 100vh;
+}
+
 .pageContainer {
   display: flex;
+  flex-flow: row nowrap;
+  height: calc(100% - 56px);
 }
 
 .sideLeftWrap {
@@ -8,22 +15,94 @@
 }
 
 .previewWrap {
-  flex: 1;
+  padding: 0px 16px 8px 16px;
+  flex: 1 1 0%;
+  background-color: rgba(0, 0, 0, 0.05);
+
+  .previewScroll {
+    min-width: 1200px;
+    min-height: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    overflow: auto;
+  }
 }
 
 .sideRightWrap {
   width: 320px;
 }
 
+.modTitle {
+  padding: 0px 16px;
+}
+
+.modSwitcher {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  line-height: 24px;
+  text-align: center;
+  vertical-align: top;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.titTxt {
+  display: inline-block;
+  height: 24px;
+  margin: 0;
+  color: rgba(0,0,0,.65);
+  line-height: 24px;
+  text-decoration: none;
+  vertical-align: top;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.modContent {
+  display: flex;
+  flex-flow: row wrap;
+  margin-left: 16px;
+  padding-bottom: 16px;
+  box-sizing: content-box;
+}
+
+.modSource {
+  display: inline-block;
+  width: 96px;
+  height: 104px;
+  cursor: move;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  transition: background-color 0.15s;
+
+  .skeletonPic {
+    display: block;
+    margin: 16px auto 12px auto;
+    width: auto;
+    height: 48px;
+    user-select: none;
+  }
+
+  .modLabel {
+    padding: 0px 6px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 600;
+  }
+}
+
 .pageFooter {
-  position: fixed;
-  left: 0px;
-  right: 0;
-  bottom: 0;
-  z-index: 99;
+  position: relative;
   height: 56px;
   line-height: 56px;
   text-align: center;
   border-top: 1px solid #f0f0f0;
-  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(119, 107, 107, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px 0px;
 }

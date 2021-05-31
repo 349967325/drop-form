@@ -1,0 +1,23 @@
+.pageWrap {
+  width: 1200px;
+  margin: 0px auto;
+}
+
+.kanban {
+  display: flex;
+}
+
+.singleList {
+  margin-left: 16px;
+  flex-shrink: 0;
+  height: 100%;
+
+  &:first-child {
+    margin-left: 0px;
+  }
+}
+
+.singleItem {
+  width: 300px;
+  margin-bottom: 16px;
+}
