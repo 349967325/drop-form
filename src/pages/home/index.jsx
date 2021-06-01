@@ -7,9 +7,7 @@ import styles from './index.module.scss'
 class Home extends Component {
   static propTypes = {}
   state = {
-    unData: [],
-    data: [],
-    endData: []
+    data: []
   }
 
   componentDidMount () {
@@ -22,7 +20,7 @@ class Home extends Component {
     }
 
     this.setState({
-      unData: arr
+      data: arr
     })
   }
 
@@ -37,17 +35,16 @@ class Home extends Component {
   }
 
   handleDragEnd = (result) => {
-    console.log(result)
     if (!result.destination) { return false }
 
     const items = this.reorder(
-      this.state.unData,
+      this.state.data,
       result.source.index,
       result.destination.index
     )
 
     this.setState({
-      unData: items
+      data: items
     })
   }
 
@@ -76,7 +73,7 @@ class Home extends Component {
   }
 
   render () {
-    const { unData = [] } = this.state
+    const { data = [] } = this.state
 
     return (
       <div className={`${styles.container}`}>
@@ -88,37 +85,9 @@ class Home extends Component {
                     {...provided.droppableProps}
                   >
                     <div className={`${styles.single}`}>
-                      <h3>待办项目</h3>
                       <div className={`${styles.kanbanContents}`}>
-                        {
-                          unData.map((item, i) => (
-                            <div key={`undata-${i}`}>
-                              <Card>{ item.content }</Card>
-                            </div>
-                          ))
-                        }
+                        { this.renderDragItem(data) }
                       </div>
-                    </div>
-
-                    <div className={`${styles.single}`}>
-                      <h3>进行中</h3>
-                      <div className={`${styles.kanbanContents}`}>
-                        <Draggable draggableId={'draggableId'}>
-                          {provided => (
-                            <div ref={provided.innerRef} className={`${styles.cardwrap}`}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                            >
-
-                            </div>
-                          )}
-                        </Draggable>
-                      </div>
-                    </div>
-
-                    <div className={`${styles.single}`}>
-                      <h3>已完成</h3>
-                      <div className={`${styles.kanbanContents}`}></div>
                     </div>
 
                   </div>
