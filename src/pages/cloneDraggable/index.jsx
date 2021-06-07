@@ -7,7 +7,7 @@ import SideRight from './sideRight'
 
 import styles from './index.module.scss'
 
-class DragRenovation extends Component {
+class CloneDraggable extends Component {
   render () {
     return (
       <div className={`${styles.dragPage}`}>
@@ -30,4 +30,4 @@ class DragRenovation extends Component {
   }
 }
 
-export default DragRenovation
+export default CloneDraggable

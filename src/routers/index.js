@@ -1,21 +1,27 @@
 import Home from '@/pages/home/index'
-import DragRenovation from '@/pages/dragRenovation/index'
+import DefaultDraggable from '@/pages/deafultDraggable/index'
+import CloneDraggable from '@/pages/cloneDraggable/index'
 import SortableTodo from '@/pages/sortableTodo/index'
 
 export const routerMaps = [
   {
     path: '/home',
-    name: '拖动排序',
+    name: '首页',
     component: Home
   },
   {
-    path: '/dragRenovation',
-    name: '店铺装修',
-    component: DragRenovation
+    path: '/defaultDraggable',
+    name: '默认拖动',
+    component: DefaultDraggable
+  },
+  {
+    path: '/cloneDraggable',
+    name: '克隆拖动',
+    component: CloneDraggable
   },
   {
     path: '/sortableTodo',
-    name: '拖拽待办事项',
+    name: '多列表拖动',
     component: SortableTodo
   }
 ]
