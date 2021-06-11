@@ -19,6 +19,12 @@ class Home extends Component {
 
         <Divider type='vertical' />
         <Link to={{ pathname: '/sortableTodo' }}>多列表拖拽</Link>
+        <Divider type='vertical' />
+
+        <Link to={{ pathname: '/cloneDraggable' }}>克隆拖动</Link>
+        <Divider type='vertical' />
+
+        <Link to={{ pathname: '/singleClone' }}>简单克隆</Link>
       </div>
     )
   }

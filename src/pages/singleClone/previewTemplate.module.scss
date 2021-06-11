@@ -1,0 +1,25 @@
+.formitemRow {
+  display: flex;
+  align-items: center;
+}
+
+.formitemLabel {
+  width: 100px;
+  text-align: right;
+
+  label {
+    font-size: 14px;
+    color: #333333;
+
+    &::after {
+      content: ':';
+      position: relative;
+      top: -.5px;
+      margin: 0 8px 0 2px;
+    }
+  }
+}
+
+.formitemControl {
+  flex: 1;
+}
