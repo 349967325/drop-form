@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { Icon } from 'antd'
+import { Icon, Modal } from 'antd'
 
 import PreviewTemplate from './previewTemplate'
 
 import styles from './index.module.scss'
 
+const { confirm } = Modal
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
@@ -32,7 +33,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   ...draggableStyle
 })
 
-const setPreviewListStyle = (isDraggingOver) => ({
+const setDroppableStyle = (isDraggingOver) => ({
   userSelect: 'none',
   color: isDraggingOver ? 'rgb(30,144,255)' : 'rgb(255, 255, 255)',
   backgroundColor: isDraggingOver ? '#FFEFD5' : '#FFFFFF'
@@ -82,7 +83,14 @@ class SingleClone extends Component {
   }
 
   // 点击删除
-  handleDeletePreviewItem = () => {}
+  handleDeletePreviewItem = () => {
+    confirm({
+      title: '确定删除？',
+      onOk: () => {
+        console.log('删除')
+      }
+    })
+  }
 
   renderDraggableItem = (dragArray) => {
     let dragElement = null
@@ -152,6 +160,7 @@ class SingleClone extends Component {
               {(droppableProvided, droppableSnapshot) => (
                 <div ref={droppableProvided.innerRef}
                   {...droppableProvided.droppableProps}
+                  style={setDroppableStyle(droppableSnapshot.isDraggingOver)}
                 >
                   { this.renderDraggableItem(tools) }
                   {droppableProvided.placeholder}
@@ -166,12 +175,12 @@ class SingleClone extends Component {
                 {(droppableProvided, droppableSnapshot) => (
                   <div ref={droppableProvided.innerRef}
                     {...droppableProvided.droppableProps}
-                    style={setPreviewListStyle(droppableSnapshot.isDraggingOver)}
+                    className={`${styles.putdownContent}`}
                   >
                     {
                       previews.length > 0
                         ? this.renderPreviewDraggableItem(previews)
-                        : <div style={{ height: '80px', lineHeight: '80px', userSelect: 'none', textAlign: 'center' }}>可放置区域</div>
+                        : <div className={`${styles.previewsemptyTips}`}>请插入模板</div>
                     }
                     {droppableProvided.placeholder}
                   </div>
