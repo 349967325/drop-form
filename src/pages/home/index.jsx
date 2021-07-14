@@ -25,6 +25,9 @@ class Home extends Component {
         <Divider type='vertical' />
 
         <Link to={{ pathname: '/singleClone' }}>简单克隆</Link>
+        <Divider type='vertical' />
+
+        <Link to={{ pathname: '/lodopPrint' }}>Lodop打印功能</Link>
       </div>
     )
   }

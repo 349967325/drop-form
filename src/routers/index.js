@@ -3,6 +3,7 @@ import DefaultDraggable from '@/pages/deafultDraggable/index'
 import CloneDraggable from '@/pages/cloneDraggable/index'
 import SortableTodo from '@/pages/sortableTodo/index'
 import SingleClone from '@/pages/singleClone/index'
+import LodopPrint from '@/pages/lodopPrint/index'
 
 export const routerMaps = [
   {
@@ -29,5 +30,9 @@ export const routerMaps = [
     path: '/singleClone',
     name: '简单克隆',
     component: SingleClone
+  },
+  {
+    path: '/lodopPrint',
+    component: LodopPrint
   }
 ]
