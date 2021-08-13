@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import { Button } from 'antd'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
-import DecoraHeader from './decoraHeader'
-import ToolsRow from './toolsRow'
+import DecoraHeader from './header/index'
+import SideLeftHeader from './components/sideLeftHeader/index'
+import ToolsMenu from './components/toolsMenu/index'
+
 import styles from './index.module.scss'
 
 const ImageComponents = [
@@ -79,15 +81,12 @@ class DragDecoration extends Component {
           <div className={`${styles.contentLand}`}>
             <div className={`${styles.toolsWrap}`}>
               <div className={`${styles.toolFlex}`}>
-                <div className={`${styles.toolTit}`}>
-                  <h3 className={`${styles.title}`}>开始装修</h3>
-                  <p className={`${styles.explain}`}>拖拽或点击组件至中间画布的对应位置</p>
-                </div>
+                <SideLeftHeader />
 
                 <div className={`${styles.toolContainer}`}>
-                  <ToolsRow name='图片组件' list={ImageComponents} />
+                  <ToolsMenu name='图片组件' list={ImageComponents} />
 
-                  <ToolsRow name='商品组件' list={ProductComponents} />
+                  <ToolsMenu name='商品组件' list={ProductComponents} />
                 </div>
 
               </div>
@@ -96,9 +95,7 @@ class DragDecoration extends Component {
               <div className={`${styles.canvasFlex}`}>
                 <Droppable droppableId='previewDroppable'>
                   {(droppableProvided, droppableSnapshot) => (
-                    <div
-                      className={`${styles.canvasContent}`}
-                      ref={droppableProvided.innerRef}
+                    <div ref={droppableProvided.innerRef} className={`${styles.canvasContent}`}
                       {...droppableProvided.droppableProps}
                     >
                       <Draggable draggableId={'previewDraggable'}>
