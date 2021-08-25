@@ -4,6 +4,7 @@ import CloneDraggable from '@/pages/cloneDraggable/index'
 import SortableTodo from '@/pages/sortableTodo/index'
 import SingleClone from '@/pages/singleClone/index'
 import LodopPrint from '@/pages/lodopPrint/index'
+import ThemeDemo from '@/pages/themeDemo/index'
 
 export const routerMaps = [
   {
@@ -34,5 +35,9 @@ export const routerMaps = [
   {
     path: '/lodopPrint',
     component: LodopPrint
+  },
+  {
+    path: '/theme',
+    component: ThemeDemo
   }
 ]

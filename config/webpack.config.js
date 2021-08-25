@@ -63,6 +63,8 @@ const cssRegex = /\.css$/
 const cssModuleRegex = /\.module\.css$/
 const sassRegex = /\.(scss|sass)$/
 const sassModuleRegex = /\.module\.(scss|sass)$/
+const lessRegex = /\.less$/
+const lessModuleRegex = /\.module\.less$/
 
 const hasJsxRuntime = (() => {
   if (process.env.DISABLE_NEW_JSX_TRANSFORM === 'true') {
@@ -139,21 +141,39 @@ module.exports = function (webpackEnv) {
       }
     ].filter(Boolean)
     if (preProcessor) {
-      loaders.push(
-        {
-          loader: require.resolve('resolve-url-loader'),
-          options: {
-            sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
-            root: paths.appSrc
+      if (preProcessor === 'less-loader') {
+        loaders.push(
+          {
+            loader: require.resolve(preProcessor),
+            options: {
+              sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
+              lessOptions: {
+                modifyVars: {
+                  'primary-color': '#2F54EB',
+                  'border-radius-base': '2px'
+                },
+                javascriptEnabled: true
+              }
+            }
           }
-        },
-        {
-          loader: require.resolve(preProcessor),
-          options: {
-            sourceMap: true
+        )
+      } else {
+        loaders.push(
+          {
+            loader: require.resolve('resolve-url-loader'),
+            options: {
+              sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
+              root: paths.appSrc
+            }
+          },
+          {
+            loader: require.resolve(preProcessor),
+            options: {
+              sourceMap: true
+            }
           }
-        }
-      )
+        )
+      }
     }
     return loaders
   }
@@ -423,7 +443,8 @@ module.exports = function (webpackEnv) {
                   ],
                   isEnvDevelopment &&
                     shouldUseReactRefresh &&
-                    require.resolve('react-refresh/babel')
+                    require.resolve('react-refresh/babel'),
+                  ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]
                 ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -535,6 +556,35 @@ module.exports = function (webpackEnv) {
                 'sass-loader'
               )
             },
+            {
+              test: lessRegex,
+              exclude: sassModuleRegex,
+              use: getStyleLoaders(
+                {
+                  importLoaders: 1,
+                  sourceMap: isEnvProduction
+                    ? shouldUseSourceMap
+                    : isEnvDevelopment
+                },
+                'less-loader'
+              ),
+              sideEffects: true
+            },
+            {
+              test: lessModuleRegex,
+              use: getStyleLoaders(
+                {
+                  importLoaders: 1,
+                  sourceMap: isEnvProduction
+                    ? shouldUseSourceMap
+                    : isEnvDevelopment,
+                  modules: {
+                    getLocalIdent: getCSSModuleLocalIdent
+                  }
+                },
+                'less-loader'
+              )
+            },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
             // In production, they would get copied to the `build` folder.
@@ -546,7 +596,7 @@ module.exports = function (webpackEnv) {
               // its runtime that would otherwise be processed through "file" loader.
               // Also exclude `html` and `json` extensions so they get processed
               // by webpacks internal loaders.
-              exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
+              exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.less$/, /\.html$/, /\.json$/],
               options: {
                 name: 'static/media/[name].[hash:8].[ext]'
               }
