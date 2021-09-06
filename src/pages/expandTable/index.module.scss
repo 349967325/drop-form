@@ -1,0 +1,28 @@
+.expandTable {
+  margin: 24px;
+
+  ul {
+    padding: 0px;
+  }
+
+  li {
+    list-style: none;
+  }
+}
+
+.content {
+  display: flex;
+  border-left: 1px solid #E8E8E8;
+}
+
+.option {
+  border-top: 1px solid #E8E8E8;
+  text-align: center;
+}
+
+.cell {
+  padding: 10px 12px;
+  border-bottom: 1px solid #E8E8E8;
+  border-right: 1px solid #E8E8E8;
+  white-space: nowrap;
+}

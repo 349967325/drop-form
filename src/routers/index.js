@@ -5,6 +5,8 @@ import SortableTodo from '@/pages/sortableTodo/index'
 import SingleClone from '@/pages/singleClone/index'
 import LodopPrint from '@/pages/lodopPrint/index'
 import ThemeDemo from '@/pages/themeDemo/index'
+import EchartAnalysis from '@/pages/echartAnalysis/index'
+import ExpandTable from '@/pages/expandTable/index'
 
 export const routerMaps = [
   {
@@ -39,5 +41,13 @@ export const routerMaps = [
   {
     path: '/theme',
     component: ThemeDemo
+  },
+  {
+    path: '/echartAnalysis',
+    component: EchartAnalysis
+  },
+  {
+    path: '/expandTable',
+    component: ExpandTable
   }
 ]

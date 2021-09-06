@@ -33,6 +33,12 @@ class Home extends Component {
 
         <div>
           <Link to={{ pathname: '/theme' }}>切换主题</Link>
+          <Divider type='vertical' />
+
+          <Link to={{ pathname: '/echartAnalysis' }}>echarts图表</Link>
+          <Divider type='vertical' />
+
+          <Link to={{ pathname: '/expandTable' }}>可展开表格</Link>
         </div>
       </div>
     )
